@@ -3,8 +3,10 @@ info:
   title: Task API
   version: 1.0.0
 servers:
-  - url: http://localhost:3000
-    description: Local development servers
+  - url: https://task-api-yprw.onrender.com
+    description: Render server
+  - url: http://localhost:8080
+    description: Local development servers 
 tags:
   - name: Tasks
     description: Task-related endpoints
@@ -25,6 +27,19 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Task'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: array
+      parameters:
+        - in: query
+          name: completed
+          schema:
+            type: boolean
+          required: false
+          description: Filtering items by completed or not
     post:
       summary: Create a new task
       tags:
